@@ -353,7 +353,7 @@ optional ftd.image-src icon:
 optional boolean $toggle: false
 
 -- ftd.column:
-width: fill-container
+width.fixed.px: 780
 background.solid: $inherited.colors.accent.primary
 padding-horizontal.px: 24
 border-radius.px: 32
