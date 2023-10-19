@@ -308,6 +308,7 @@ padding-vertical.px if {ftd.device == "mobile"}: 24
 padding-horizontal.px if {ftd.device == "mobile"}: 24
 width: fill-container
 align-content: center
+align-self: center
 spacing.fixed.px: 44
 classes: section
 
