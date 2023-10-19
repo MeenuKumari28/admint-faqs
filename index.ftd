@@ -1,5 +1,757 @@
 -- ds.page: 
+full-width: true
 
--- ds.h1: Faqs
+-- ds.h1: Component 1
+
+-- faqs: Frequently Asked Questions
+faqs-list: $list-of-faqs
+
+-- ds.h1: Component 2
+
+-- faqs-1: Frequently Asked Questions
+faqs-list-1: $list-of-faqs-1
+
+-- ds.h1: Component 3
+
+-- faqs-2: Frequently Asked Questions
+faqs-list-2: $list-of-faqs-2
+
+-- ds.h1: Component 4
+
+-- faqs-3: Frequently Asked Questions
+faqs-list-3: $list-of-faqs-3
 
 -- end: ds.page
+
+
+
+
+
+
+
+
+
+
+
+
+-- component faqs:
+caption title:
+optional body body:
+faq list faqs-list:
+
+-- ftd.column:
+padding-vertical.px: 80
+padding-horizontal.px: 80
+padding-vertical.px if {ftd.device == "mobile"}: 24
+padding-horizontal.px if {ftd.device == "mobile"}: 24
+width: fill-container
+align-content: center
+
+-- ftd.text: $faqs.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+margin-bottom.px: 32
+margin-bottom.px if { faqs.body == NULL }: 87
+
+-- ftd.text:
+if: { faqs.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-bottom.px: 87
+
+$faqs.body
+
+-- ftd.column:
+width: fill-container
+
+-- faqs-list-detail:
+$loop$: $faqs.faqs-list as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: faqs
+
+
+
+
+
+
+
+
+
+
+-- component faqs-list-detail:
+caption title: 
+optional body body:
+optional ftd.image-src icon:
+optional boolean $toggle: false
+
+-- ftd.column:
+width: fill-container
+padding-vertical.px: 24
+border-bottom-width.px: 1
+border-color: $inherited.colors.text-strong
+
+-- ftd.row:
+width: fill-container
+width if { ftd.device == "mobile"}: fill-container
+align-self: center
+spacing: space-between
+spacing.fixed.px if { ftd.device == "mobile"}: 25
+$on-click$: $ftd.toggle($a = $faqs-list-detail.toggle)
+
+-- ftd.text: $faqs-list-detail.title
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+width: fill-container
+
+-- ftd.image:
+src: $assets.files.assets.toggle-down.svg
+src if { faqs-list-detail.toggle }: $assets.files.assets.toggle-up.svg
+height.fixed.px: 35
+width.fixed.px: 35
+
+-- end: ftd.row
+
+-- ftd.text:
+if: { $faqs-list-detail.body != NULL && faqs-list-detail.toggle }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+margin-top.px: 18
+
+$faqs-list-detail.body
+
+-- end: ftd.column
+
+-- end: faqs-list-detail
+
+
+
+
+
+
+
+
+
+
+-- component faqs-1:
+caption title:
+optional body body:
+faq-1 list faqs-list-1:
+
+-- ftd.column:
+width: fill-container
+
+-- ftd.desktop:
+
+-- ftd.row:
+padding-vertical.px: 80
+padding-horizontal.px: 80
+padding-vertical.px if {ftd.device == "mobile"}: 24
+padding-horizontal.px if {ftd.device == "mobile"}: 24
+width: fill-container
+spacing.fixed.px: 32
+
+-- ftd.column:
+max-width.fixed.percent: 30
+width: fill-container
+
+-- ftd.text: $faqs-1.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { faqs-1.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 8
+
+$faqs-1.body
+
+-- end: ftd.column
+
+-- ftd.column:
+max-width.fixed.percent: 70
+spacing.fixed.px: 30
+width: fill-container
+
+-- faqs-list-detail-1:
+$loop$: $faqs-1.faqs-list-1 as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.desktop
+
+-- ftd.mobile:
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 32
+
+-- ftd.text: $faqs-1.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { faqs-1.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 8
+
+$faqs-1.body
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 30
+
+-- faqs-list-detail-1:
+$loop$: $faqs-1.faqs-list-1 as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.mobile
+
+-- end: ftd.column
+
+-- end: faqs-1
+
+
+
+
+
+
+
+
+
+
+-- component faqs-list-detail-1:
+caption title: 
+optional body body:
+optional ftd.image-src icon:
+optional boolean $toggle: false
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 10
+border-bottom-width.px: 1
+border-color: $inherited.colors.border
+
+-- ftd.row:
+width: fill-container
+width if { ftd.device == "mobile"}: fill-container
+spacing.fixed.px: 16
+$on-click$: $ftd.toggle($a = $faqs-list-detail-1.toggle)
+align-self: center
+
+-- ftd.image:
+src: $assets.files.assets.add.svg
+src if { faqs-list-detail-1.toggle }: $assets.files.assets.remove.svg
+height.fixed.px: 35
+width.fixed.px: 35
+
+-- ftd.column:
+width.fixed.px: 680
+spacing.fixed.px: 18
+width if { ftd.device == "mobile" }: fill-container
+padding-bottom.px: 12
+
+-- ftd.text: $faqs-list-detail-1.title
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { $faqs-list-detail-1.body != NULL && faqs-list-detail-1.toggle }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+
+$faqs-list-detail-1.body
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: faqs-list-detail-1
+
+
+
+
+
+
+
+
+
+
+-- component faqs-2:
+caption title:
+optional body body:
+faq-2 list faqs-list-2:
+
+-- ftd.column:
+padding-top.px: 50
+padding-bottom.px: 70
+padding-vertical.px if {ftd.device == "mobile"}: 24
+padding-horizontal.px if {ftd.device == "mobile"}: 24
+width: fill-container
+align-content: center
+spacing.fixed.px: 29
+classes: section
+
+-- ftd.text: $faqs-2.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { faqs-2.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+
+$faqs-2.body
+
+-- ftd.column:
+width if { ftd.device == "mobile" }: fill-container
+spacing.fixed.px: 30
+
+-- faqs-list-detail-2:
+$loop$: $faqs-2.faqs-list-2 as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: faqs-2
+
+
+
+
+
+
+
+
+
+
+-- component faqs-list-detail-2:
+caption title: 
+optional body body:
+optional ftd.image-src icon:
+optional boolean $toggle: false
+
+-- ftd.column:
+width: fill-container
+background.solid: $inherited.colors.accent.primary
+padding-horizontal.px: 24
+border-radius.px: 32
+spacing.fixed.px: 18
+height.fixed.px if { faqs-list-detail-2.toggle }: 250
+
+-- ftd.row:
+width.fixed.px: 750
+width if { ftd.device == "mobile"}: fill-container
+align-self: center
+spacing: space-between
+padding-top.px: 18
+$on-click$: $ftd.toggle($a = $faqs-list-detail-2.toggle)
+
+-- ftd.text: $faqs-list-detail-2.title
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+
+-- ftd.image:
+src: $assets.files.assets.add.svg
+src if { faqs-list-detail-2.toggle }: $assets.files.assets.remove.svg
+height.fixed.px: 24
+width.fixed.px: 24
+
+-- end: ftd.row
+
+-- ftd.column:
+width.fixed.px: 750
+width if { ftd.device == "mobile" }: fill-container
+padding-bottom.px if { faqs-list-detail-2.toggle }: 18
+overflow-y: auto
+height.fixed.px if { faqs-list-detail-2.toggle }: 250
+
+-- ftd.text:
+if: { $faqs-list-detail-2.body != NULL && faqs-list-detail-2.toggle }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+
+$faqs-list-detail-2.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: faqs-list-detail-2
+
+
+
+
+
+
+
+
+
+
+-- component faqs-3:
+caption title:
+optional body body:
+faq-3 list faqs-list-3:
+
+-- ftd.column:
+width.fixed.px: 1050
+padding-vertical.px: 32
+padding-horizontal.px: 32
+align-self: center
+padding-vertical.px if {ftd.device == "mobile"}: 24
+padding-horizontal.px if {ftd.device == "mobile"}: 24
+spacing.fixed.px: 68
+border-width.px: 1
+border-color: $inherited.colors.accent.primary
+border-radius.px: 20
+
+-- ftd.text: $faqs-3.title
+role: $inherited.types.heading-medium
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { faqs-3.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-top.px: 8
+
+$faqs-3.body
+
+-- ftd.column:
+spacing.fixed.px: 30
+width: fill-container
+
+-- faqs-list-detail-3:
+$loop$: $faqs-3.faqs-list-3 as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: faqs-3
+
+
+
+
+
+
+
+
+
+
+-- component faqs-list-detail-3:
+caption title: 
+optional body body:
+optional ftd.image-src icon:
+optional boolean $toggle: false
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 10
+
+-- ftd.row:
+width: fill-container
+width if { ftd.device == "mobile"}: fill-container
+spacing.fixed.px: 16
+$on-click$: $ftd.toggle($a = $faqs-list-detail-3.toggle)
+align-self: center
+
+-- ftd.image:
+src: $assets.files.assets.right.svg
+src if { faqs-list-detail-3.toggle }: $assets.files.assets.down.svg
+height.fixed.px: 28
+width.fixed.px: 28
+
+-- ftd.column:
+width.fixed.px: 900
+spacing.fixed.px: 18
+width if { ftd.device == "mobile" }: fill-container
+padding-bottom.px: 12
+
+-- ftd.text: $faqs-list-detail-3.title
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+
+-- ftd.text:
+if: { $faqs-list-detail-3.body != NULL && faqs-list-detail-3.toggle }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+
+$faqs-list-detail-3.body
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: faqs-list-detail-3
+
+
+
+
+
+
+
+
+
+-- record faq:
+caption title: 
+optional body body:
+
+-- faq list list-of-faqs:
+
+-- faq: Are there really zero fees?
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+-- faq: Is Fastn secure?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq: Does Fastn replace my accounting software?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq: Is Fastn a bank?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq: Are the payments really instant?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq: Do my clients and vendors have to sign up for Fastn too?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq: How does Fastn make money?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- end: list-of-faqs
+
+
+
+
+
+
+-- record faq-1:
+caption title: 
+optional body body:
+
+-- faq-1 list list-of-faqs-1:
+
+-- faq-1: Are there really zero fees?
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+-- faq-1: Is Fastn secure?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-1: Does Fastn replace my accounting software?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-1: Is Fastn a bank?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-1: Are the payments really instant?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-1: Do my clients and vendors have to sign up for Fastn too?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-1: How does Fastn make money?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- end: list-of-faqs-1
+
+
+
+
+
+
+
+
+
+
+-- record faq-2:
+caption title: 
+optional body body:
+
+-- faq-2 list list-of-faqs-2:
+
+-- faq-2: Are there really zero fees?
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+-- faq-2: Is Fastn secure?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-2: Does Fastn replace my accounting software?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-2: Is Fastn a bank?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-2: Are the payments really instant?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-2: Do my clients and vendors have to sign up for Fastn too?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-2: How does Fastn make money?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- end: list-of-faqs-2
+
+
+
+
+
+
+
+
+
+-- record faq-3:
+caption title: 
+optional body body:
+
+-- faq-3 list list-of-faqs-3:
+
+-- faq-3: Are there really zero fees?
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
+
+-- faq-3: Is Fastn secure?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-3: Does Fastn replace my accounting software?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-3: Is Fastn a bank?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-3: Are the payments really instant?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-3: Do my clients and vendors have to sign up for Fastn too?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- faq-3: How does Fastn make money?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
+in luctus rutrum.
+
+-- end: list-of-faqs-3
+
