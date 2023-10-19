@@ -308,7 +308,7 @@ padding-vertical.px if {ftd.device == "mobile"}: 24
 padding-horizontal.px if {ftd.device == "mobile"}: 24
 width: fill-container
 align-content: center
-spacing.fixed.px: 29
+spacing.fixed.px: 44
 classes: section
 
 -- ftd.text: $faqs-2.title
@@ -323,7 +323,9 @@ color: $inherited.colors.text
 $faqs-2.body
 
 -- ftd.column:
-width if { ftd.device == "mobile" }: fill-container
+width: fill-container
+align-content: center
+align-self: center
 spacing.fixed.px: 30
 
 -- faqs-list-detail-2:
