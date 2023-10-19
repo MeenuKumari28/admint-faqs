@@ -9,17 +9,22 @@ faqs-list: $list-of-faqs
 -- ds.h1: Component 2
 
 -- faqs-1: Frequently Asked Questions
-faqs-list-1: $list-of-faqs-1
+faqs-list: $list-of-faqs
 
 -- ds.h1: Component 3
 
 -- faqs-2: Frequently Asked Questions
-faqs-list-2: $list-of-faqs-2
+faqs-list: $list-of-faqs
 
 -- ds.h1: Component 4
 
 -- faqs-3: Frequently Asked Questions
-faqs-list-3: $list-of-faqs-3
+faqs-list: $list-of-faqs
+
+-- ds.h1: Component 5
+
+-- faqs-4: Frequently Asked Questions
+faqs-list: $list-of-faqs
 
 -- end: ds.page
 
@@ -141,7 +146,7 @@ $faqs-list-detail.body
 -- component faqs-1:
 caption title:
 optional body body:
-faq-1 list faqs-list-1:
+faq list faqs-list:
 
 -- ftd.column:
 width: fill-container
@@ -180,7 +185,7 @@ spacing.fixed.px: 30
 width: fill-container
 
 -- faqs-list-detail-1:
-$loop$: $faqs-1.faqs-list-1 as $obj
+$loop$: $faqs-1.faqs-list as $obj
 title: $obj.title
 body: $obj.body
 
@@ -213,7 +218,7 @@ width: fill-container
 spacing.fixed.px: 30
 
 -- faqs-list-detail-1:
-$loop$: $faqs-1.faqs-list-1 as $obj
+$loop$: $faqs-1.faqs-list as $obj
 title: $obj.title
 body: $obj.body
 
@@ -299,7 +304,7 @@ $faqs-list-detail-1.body
 -- component faqs-2:
 caption title:
 optional body body:
-faq-2 list faqs-list-2:
+faq list faqs-list:
 
 -- ftd.column:
 padding-top.px: 50
@@ -329,7 +334,7 @@ align-self: center
 spacing.fixed.px: 30
 
 -- faqs-list-detail-2:
-$loop$: $faqs-2.faqs-list-2 as $obj
+$loop$: $faqs-2.faqs-list as $obj
 title: $obj.title
 body: $obj.body
 
@@ -414,7 +419,7 @@ $faqs-list-detail-2.body
 -- component faqs-3:
 caption title:
 optional body body:
-faq-3 list faqs-list-3:
+faq list faqs-list:
 
 -- ftd.column:
 width.fixed.px: 1050
@@ -445,7 +450,7 @@ spacing.fixed.px: 30
 width: fill-container
 
 -- faqs-list-detail-3:
-$loop$: $faqs-3.faqs-list-3 as $obj
+$loop$: $faqs-3.faqs-list as $obj
 title: $obj.title
 body: $obj.body
 
@@ -520,6 +525,112 @@ $faqs-list-detail-3.body
 
 
 
+
+-- component faqs-4:
+caption title:
+optional body body:
+faq list faqs-list:
+
+-- ftd.column:
+padding-vertical.px: 80
+padding-horizontal.px: 80
+padding-vertical.px if {ftd.device == "mobile"}: 24
+padding-horizontal.px if {ftd.device == "mobile"}: 24
+width: fill-container
+align-content: center
+
+-- ftd.text: $faqs-4.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+margin-bottom.px: 32
+margin-bottom.px if { faqs-4.body == NULL }: 87
+
+-- ftd.text:
+if: { faqs-4.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-bottom.px: 87
+
+$faqs-4.body
+
+-- ftd.column:
+width: fill-container
+
+-- faqs-list-detail-4:
+$loop$: $faqs-4.faqs-list as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: faqs-4
+
+
+
+
+
+
+
+
+
+
+-- component faqs-list-detail-4:
+caption title: 
+optional body body:
+optional ftd.image-src icon:
+optional boolean $toggle: false
+
+-- ftd.column:
+width: fill-container
+padding.px: 24
+border-width.px if { faqs-list-detail-4.toggle }: 1
+border-color if { faqs-list-detail-4.toggle }: $inherited.colors.text-strong
+border-radius.px if { faqs-list-detail-4.toggle }: 12
+
+-- ftd.row:
+width: fill-container
+width if { ftd.device == "mobile"}: fill-container
+align-self: center
+spacing: space-between
+spacing.fixed.px if { ftd.device == "mobile"}: 25
+$on-click$: $ftd.toggle($a = $faqs-list-detail-4.toggle)
+
+-- ftd.text: $faqs-list-detail-4.title
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+width: fill-container
+
+-- ftd.image:
+src: $assets.files.assets.plus.svg
+src if { faqs-list-detail-4.toggle }: $assets.files.assets.minus.svg
+height.fixed.px: 28
+width.fixed.px: 28
+
+-- end: ftd.row
+
+-- ftd.text:
+if: { $faqs-list-detail-4.body != NULL && faqs-list-detail-4.toggle }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+margin-top.px: 18
+
+$faqs-list-detail-4.body
+
+-- end: ftd.column
+
+-- end: faqs-list-detail-4
+
+
+
+
+
+
+
+
+
+
 -- record faq:
 caption title: 
 optional body body:
@@ -527,6 +638,13 @@ optional body body:
 -- faq list list-of-faqs:
 
 -- faq: Are there really zero fees?
+
+At Fastn, we believe businesses shouldn’t have to wait or pay to access money
+they’ve already earned. That’s why it doesn’t cost a penny to create an account
+and there are zero transaction fees when you use the Fastn platform to pay and
+get paid. If you decide to leverage some of our more premium payment features
+(like Fastn Flow, which lets you get paid before your client pays you) there
+may be a small service fee—
 
 At Fastn, we believe businesses shouldn’t have to wait or pay to access money
 they’ve already earned. That’s why it doesn’t cost a penny to create an account
@@ -566,195 +684,3 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
 in luctus rutrum.
 
 -- end: list-of-faqs
-
-
-
-
-
-
--- record faq-1:
-caption title: 
-optional body body:
-
--- faq-1 list list-of-faqs-1:
-
--- faq-1: Are there really zero fees?
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
--- faq-1: Is Fastn secure?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-1: Does Fastn replace my accounting software?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-1: Is Fastn a bank?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-1: Are the payments really instant?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-1: Do my clients and vendors have to sign up for Fastn too?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-1: How does Fastn make money?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- end: list-of-faqs-1
-
-
-
-
-
-
-
-
-
-
--- record faq-2:
-caption title: 
-optional body body:
-
--- faq-2 list list-of-faqs-2:
-
--- faq-2: Are there really zero fees?
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
--- faq-2: Is Fastn secure?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-2: Does Fastn replace my accounting software?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-2: Is Fastn a bank?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-2: Are the payments really instant?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-2: Do my clients and vendors have to sign up for Fastn too?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-2: How does Fastn make money?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- end: list-of-faqs-2
-
-
-
-
-
-
-
-
-
--- record faq-3:
-caption title: 
-optional body body:
-
--- faq-3 list list-of-faqs-3:
-
--- faq-3: Are there really zero fees?
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
-At Fastn, we believe businesses shouldn’t have to wait or pay to access money
-they’ve already earned. That’s why it doesn’t cost a penny to create an account
-and there are zero transaction fees when you use the Fastn platform to pay and
-get paid. If you decide to leverage some of our more premium payment features
-(like Fastn Flow, which lets you get paid before your client pays you) there
-may be a small service fee—
-
--- faq-3: Is Fastn secure?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-3: Does Fastn replace my accounting software?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-3: Is Fastn a bank?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-3: Are the payments really instant?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-3: Do my clients and vendors have to sign up for Fastn too?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- faq-3: How does Fastn make money?
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
-in luctus rutrum.
-
--- end: list-of-faqs-3
-
