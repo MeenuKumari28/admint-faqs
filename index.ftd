@@ -310,7 +310,6 @@ width: fill-container
 align-content: center
 align-self: center
 spacing.fixed.px: 44
-classes: section
 
 -- ftd.text: $faqs-2.title
 role: $inherited.types.heading-large
