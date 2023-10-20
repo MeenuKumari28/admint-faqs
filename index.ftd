@@ -26,6 +26,11 @@ faqs-list: $list-of-faqs
 -- faqs-4: Frequently Asked Questions
 faqs-list: $list-of-faqs
 
+-- ds.h1: Component 6
+
+-- faqs-5: Frequently Asked Questions
+faqs-list: $list-of-faqs
+
 -- end: ds.page
 
 
@@ -361,6 +366,7 @@ optional boolean $toggle: false
 
 -- ftd.column:
 width.fixed.px: 780
+width if { ftd.device == "mobile"}: fill-container
 background.solid: $inherited.colors.accent.primary
 padding-horizontal.px: 24
 border-radius.px: 32
@@ -423,6 +429,7 @@ faq list faqs-list:
 
 -- ftd.column:
 width.fixed.px: 1050
+width if { ftd.device == "mobile"}: fill-container
 padding-vertical.px: 32
 padding-horizontal.px: 32
 align-self: center
@@ -481,7 +488,6 @@ spacing.fixed.px: 10
 
 -- ftd.row:
 width: fill-container
-width if { ftd.device == "mobile"}: fill-container
 spacing.fixed.px: 16
 $on-click$: $ftd.toggle($a = $faqs-list-detail-3.toggle)
 align-self: center
@@ -631,6 +637,112 @@ $faqs-list-detail-4.body
 
 
 
+-- component faqs-5:
+caption title:
+optional body body:
+faq list faqs-list:
+
+-- ftd.column:
+padding-vertical.px: 80
+padding-horizontal.px: 80
+padding-vertical.px if {ftd.device == "mobile"}: 24
+padding-horizontal.px if {ftd.device == "mobile"}: 24
+width: fill-container
+align-content: center
+
+-- ftd.text: $faqs-5.title
+role: $inherited.types.heading-large
+color: $inherited.colors.text-strong
+margin-bottom.px: 32
+margin-bottom.px if { faqs-5.body == NULL }: 87
+
+-- ftd.text:
+if: { faqs-5.body != NULL }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text
+margin-bottom.px: 87
+
+$faqs-5.body
+
+-- ftd.column:
+width: fill-container
+spacing.fixed.px: 32
+align-content: center
+
+-- faqs-list-detail-5:
+$loop$: $faqs-5.faqs-list as $obj
+title: $obj.title
+body: $obj.body
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: faqs-5
+
+
+
+
+
+
+
+
+
+
+-- component faqs-list-detail-5:
+caption title: 
+optional body body:
+optional ftd.image-src icon:
+optional boolean $toggle: false
+
+-- ftd.column:
+width.fixed.px: 650
+width if { ftd.device == "mobile" }: fill-container
+padding.px: 24
+background.solid: $inherited.colors.accent.primary
+border-radius.px: 12
+$on-click$: $ftd.toggle($a = $faqs-list-detail-5.toggle)
+
+-- ftd.text: $faqs-list-detail-5.title
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text-strong
+width: fill-container
+
+-- ftd.text:
+if: { $faqs-list-detail-5.body != NULL && faqs-list-detail-5.toggle }
+role: $inherited.types.copy-regular
+color: $inherited.colors.text-strong
+margin-top.px: 18
+
+$faqs-list-detail-5.body
+
+-- ftd.image:
+src: $assets.files.assets.close.svg
+src if { faqs-list-detail-5.toggle }: $assets.files.assets.open.svg
+height.fixed.px: 34
+width.fixed.px: 34
+anchor: parent
+bottom.px: -14
+align-self: center
+background.solid: $inherited.colors.accent.primary
+border-radius.px: 100
+padding.px: 4
+shadow: $s
+
+
+-- end: ftd.column
+
+-- end: faqs-list-detail-5
+
+
+
+
+
+
+
+
+
+
 -- record faq:
 caption title: 
 optional body body:
@@ -684,3 +796,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie ante
 in luctus rutrum.
 
 -- end: list-of-faqs
+
+
+
+
+
+
+
+
+-- ftd.shadow s:
+color: #FAC898
+x-offset.px: 0
+y-offset.px: 0
+blur.px: 4
+inset-body: false
+spread.px: 2
